@@ -87,6 +87,13 @@ client.on('messageCreate', async function(message: Discord.Message) {
         return;
     }
 
+    // If message is single character, ignore
+    if(message.content.length <= 1)
+    {
+        console.log("Bailing, message was too short");
+        return;
+    }
+
     // If message doesn't start with prefix, ignore
     if(message.content.indexOf(config.prefix) !== 0)
     {
