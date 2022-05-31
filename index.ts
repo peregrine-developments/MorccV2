@@ -5,6 +5,8 @@ import sanitize from 'sanitize-filename';
 import 'dotenv/config';
 import 'process';
 
+import * as logger from './lib/logger';
+
 // Enter app directory
 process.chdir(__dirname);
 
@@ -58,7 +60,7 @@ for(const cat of categoryList)
         // Load command
         const command = require(`./commands/${cat}/${file}`).command;
 
-        console.log(`Loaded command ${command.id}`);
+        logger.log_info(`Loaded command ${command.id}`);
 
         // Assign command
         if(Array.isArray(command.name))
@@ -83,21 +85,21 @@ client.on('messageCreate', async function(message: Discord.Message) {
     // If message from a bot, ignore
     if(message.author.bot)
     {
-        console.log("Bailing, message was from a bot");
+       	logger.log_error("Bailing, message was from a bot");
         return;
     }
 
     // If message doesn't start with prefix, ignore
     if(message.content.indexOf(config.prefix) !== 0)
     {
-        console.log("Bailing, message didn't start with prefix");
+        logger.log_error("Bailing, message didn't start with prefix");
         return;
     }
 
     // If channel is a DM, ignore
     if(message.channel.type === 'DM')
     {
-        console.log("Bailing, message was from a DM");
+        logger.log_error("Bailing, message was from a DM");
         return;
     }
 
@@ -121,15 +123,15 @@ client.on('messageCreate', async function(message: Discord.Message) {
     }
     catch (err)
     {
-        console.log(err);
+        logger.log_fatal(err);
 
         message.reply(`An error occurred while running command \`${commandReq}\`!`);
     }
 });
 
 // Set up error listening
-client.on('warn', console.warn);
-client.on('error', console.error);
+client.on('warn', logger.log_warning);
+client.on('error', logger.log_error);
 
 // Login to discord
 client.login(process.env.DISCORD_TOKEN);
