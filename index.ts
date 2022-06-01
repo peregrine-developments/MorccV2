@@ -85,21 +85,21 @@ client.on('messageCreate', async function(message: Discord.Message) {
     // If message from a bot, ignore
     if(message.author.bot)
     {
-       	logger.log_error("Bailing, message was from a bot");
+       	logger.log_info("Bailing, message was from a bot");
         return;
     }
 
     // If message doesn't start with prefix, ignore
     if(message.content.indexOf(config.prefix) !== 0)
     {
-        logger.log_error("Bailing, message didn't start with prefix");
+        logger.log_info("Bailing, message didn't start with prefix");
         return;
     }
 
     // If channel is a DM, ignore
     if(message.channel.type === 'DM')
     {
-        logger.log_error("Bailing, message was from a DM");
+        logger.log_info("Bailing, message was from a DM");
         return;
     }
 
@@ -123,7 +123,7 @@ client.on('messageCreate', async function(message: Discord.Message) {
     }
     catch (err)
     {
-        logger.log_fatal(err);
+        logger.log_error(err);
 
         message.reply(`An error occurred while running command \`${commandReq}\`!`);
     }
