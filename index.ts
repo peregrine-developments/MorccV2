@@ -131,7 +131,7 @@ client.on('messageCreate', async function(message: Discord.Message) {
 
 // Set up error listening
 client.on('warn', logger.log_warning);
-client.on('error', logger.log_error);
+client.on('error', logger.log_error_error);
 
 // Login to discord
 client.login(process.env.DISCORD_TOKEN);

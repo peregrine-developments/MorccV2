@@ -30,6 +30,10 @@ export function log_error(text: string) {
 	logger_log(text, LogLevel.ERROR);
 }
 
+export function log_error_error(text: Error) {
+	logger_log(text.toString(), LogLevel.ERROR);
+}
+
 export function log_fatal(text: string) {
 	logger_log(text, LogLevel.FATAL);
 }
