@@ -6,6 +6,8 @@ const google = {
     id: 'google', // Unique command identifier
     name: ['google', 'lmgtfy'], // Command names
     description: 'Google it', // Command description
+    hidden: false,
+    category: "Utility",
     run: async (client, message, args) => {
         let googleEmbed;
 
@@ -17,7 +19,8 @@ const google = {
             if(messageReference.content.length > 0)
             {
                 let query: string = encodeURIComponent(messageReference.content).replace(/%20/g, '+');
-    
+                query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
+
                 // Build URL
                 const url: string = GOOGLE_URL + query;
 
@@ -44,6 +47,7 @@ const google = {
         {
             // Search by query
             let query: string = encodeURIComponent(args.join(' ')).replace(/%20/g, '+');
+            query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
 
             // Build URL
             const url: string = GOOGLE_URL + query;
