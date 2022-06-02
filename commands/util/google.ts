@@ -19,8 +19,7 @@ const google = {
             if(messageReference.content.length > 0)
             {
                 let query: string = encodeURIComponent(messageReference.content).replace(/%20/g, '+');
-                query = query.replace('(', '%40');
-                query = query.replace(')', '%41');
+                query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
 
                 // Build URL
                 const url: string = GOOGLE_URL + query;
@@ -48,8 +47,7 @@ const google = {
         {
             // Search by query
             let query: string = encodeURIComponent(args.join(' ')).replace(/%20/g, '+');
-            query = query.replace('(', '%40');
-            query = query.replace(')', '%41');
+            query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
 
             // Build URL
             const url: string = GOOGLE_URL + query;
