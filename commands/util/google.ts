@@ -4,7 +4,7 @@ const GOOGLE_URL: string = "https://www.google.com/search?q=";
 
 function encodeQuery(query: string): string
 {
-    return encodeURIComponent(query).replace(/(%20)|(%0A)/g, "+").replace(/\(/g, '%28').replace(/\)/g, '%29');
+    return encodeURIComponent(query).replace(/((%20)|(%0A))+/g, "+").replace(/\(/g, '%28').replace(/\)/g, '%29');
 }
 
 const google = {
