@@ -92,7 +92,7 @@ client.on('messageCreate', async function(message: Discord.Message) {
     // If message is single character, ignore
     if(message.content.length <= 1)
     {
-        console.log("Bailing, message was too short");
+        logger.log_info("Bailing, message was too short");
         return;
     }
 

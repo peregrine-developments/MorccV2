@@ -2,6 +2,11 @@ import { makeEmbed } from '../../lib/embed';
 
 const GOOGLE_URL: string = "https://www.google.com/search?q=";
 
+function encodeQuery(query: string): string
+{
+    return encodeURIComponent(query).replace(/(%20)|(%0A)/g, "+").replace(/\(/g, '%28').replace(/\)/g, '%29');
+}
+
 const google = {
     id: 'google', // Unique command identifier
     name: ['google', 'lmgtfy'], // Command names
@@ -18,8 +23,7 @@ const google = {
 
             if(messageReference.content.length > 0)
             {
-                let query: string = encodeURIComponent(messageReference.content).replace(/%20/g, '+');
-                query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
+                let query: string = encodeQuery(messageReference.content);
 
                 // Build URL
                 const url: string = GOOGLE_URL + query;
@@ -46,8 +50,7 @@ const google = {
         else if(args.length > 0)
         {
             // Search by query
-            let query: string = encodeURIComponent(args.join(' ')).replace(/%20/g, '+');
-            query = query.replace(/\(/g, '%28').replace(/\)/g, '%29');
+            let query: string = encodeQuery(args.join(' '));
 
             // Build URL
             const url: string = GOOGLE_URL + query;
