@@ -23,12 +23,19 @@ Please reference and adhere to the information below when making contributions t
 6. Commit and push your changes
 7. Create a PR from your modified branch into `MorccV2/main`
 
-## PR Name Examples
+## Branch Name Examples
 - Adding a new command: `feat-add-[name]-command`
-- Fixing a command bug: `fix-[name]-command-bug`
+- Fixing a command bug: `fix-[name]-command-[bug]`
 - Changing a command (no bugfix): `refactor-[name]-command`
 - Other code changes (chores): `chore-[etc]`
 - Documentation changes: `docs-[etc]`
+
+## PR Name Examples
+- Adding command: `feat: add [name] command`
+- Fixing bug: `fix: [name] command [bug]`
+- Changing command: `refactor: [name] command`
+- Other changes: `chore: [etc]`
+- Docs changes: `docs: [etc]`
 
 ## Testing your build
 
