@@ -103,6 +103,13 @@ client.on('messageCreate', async function(message: Discord.Message) {
         return;
     }
 
+    // If message starts with more than one prefix, ignore
+    if(message.content.indexOf(config.prefix, 1) !== -1)
+    {
+        logger.log_info("Bailing, message started with multiple prefixes");
+        return;
+    }
+
     // If channel is a DM, ignore
     if(message.channel.type === 'DM')
     {
@@ -121,6 +128,7 @@ client.on('messageCreate', async function(message: Discord.Message) {
 
         if(command)
         {
+            logger.log_info(`Running command ${command.id} from message ${message.id} in guild ${message.guild.id}`);
             await command.run(client, message, args);
         }
         else
